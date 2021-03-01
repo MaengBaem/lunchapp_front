@@ -14,7 +14,6 @@ class HeaderComponent extends Component {
             <header>
                 <nav className="navbar navbar-expand-md navbar-dark bg-dark">
                     <div className="navbar-brand">Simple Login App JWT</div>
-
                     <ul className="navbar-nav">
                         {isUserLoggedIn && <li><Link className="nav-link" to="/welcome/user_id">Home</Link></li>}
                     </ul>
