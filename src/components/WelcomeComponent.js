@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import HelloWorldService from './HelloWorldService.js'
 import AuthenticationService from './AuthenticationService.js'
 
 class WelcomeComponent extends Component {
@@ -36,7 +34,6 @@ class WelcomeComponent extends Component {
     }
 
     retrieveWelcomeMessage() {
-        // HelloWorldService.executeHelloService()
         AuthenticationService.executeHelloService()
             .then(response => this.handleSuccessfulResponse(response))
             .catch(error => this.handleError(error))

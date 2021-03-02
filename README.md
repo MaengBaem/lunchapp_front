@@ -21,6 +21,8 @@ ___
 
 9. npm i redux-logger
 
+9. npm i jwt-decode
+
 ___
 ## 메모
 1. 리덕스 툴킷

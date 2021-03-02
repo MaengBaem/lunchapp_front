@@ -1,24 +1,16 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import AuthenticationService from './AuthenticationService.js'
-
+import { ALL } from "../common/AuthRole";
 
 class HeaderComponent extends Component {
     render() {
-        const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
-
-        console.log("===Headeromponent===");
-        console.log(isUserLoggedIn);
-
+        const isUserLoggedIn = AuthenticationService.isAuthCheck(ALL);
         return (
-            <header>
-                <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-                    <div className="navbar-brand">Simple Login App JWT</div>
+            <header style={{ borderBottom: '1px solid red', marginBottom: '10px', padding: '10px' }}>
+                <nav className="navbar" style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <div className="navbar-title"><h1>Lunch app</h1></div>
                     <ul className="navbar-nav">
-                        {isUserLoggedIn && <li><Link className="nav-link" to="/welcome/user_id">Home</Link></li>}
-                    </ul>
-
-                    <ul className="navbar-nav navbar-collapse justify-content-end">
                         {!isUserLoggedIn && <li><Link className="nav-link" to="/login">Login</Link></li>}
                         {isUserLoggedIn && <li><Link className="nav-link" to="/logout" onClick={AuthenticationService.logout}>Logout</Link></li>}
                     </ul>

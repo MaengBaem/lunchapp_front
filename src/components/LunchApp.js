@@ -1,16 +1,14 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import AuthenticatedRoute from './AuthenticatedRoute.jsx'
+import AuthenticatedRoute from './AuthenticatedRoute.js'
 import LoginComponent from './LoginComponent.js'
-import ErrorComponent from './ErrorComponent.jsx'
-import HeaderComponent from './HeaderComponent.jsx'
-import FooterComponent from './FooterComponent.js'
+import HeaderComponent from './HeaderComponent.js'
 import LogoutComponent from './LogoutComponent.js'
 import WelcomeComponent from './WelcomeComponent.js'
-import TestComponent from './TestComponent.js'
 import { withRouter } from 'react-router'
+import { USER, ADMIN, ALL } from "../common/AuthRole";
 
-class LoginApp extends Component {
+class LunchApp extends Component {
     render() {
         const HeaderWithRouter = withRouter(HeaderComponent);
         return (
@@ -21,12 +19,10 @@ class LoginApp extends Component {
                         <Switch>
                             <Route path="/" exact component={LoginComponent} />
                             <Route path="/login" component={LoginComponent} />
-                            <AuthenticatedRoute path="/welcome/:name" component={WelcomeComponent} />
+                            <AuthenticatedRoute path="/welcome/:name" component={WelcomeComponent} role={USER} />
                             <AuthenticatedRoute path="/logout" component={LogoutComponent} />
-                            <AuthenticatedRoute path="/test" component={TestComponent} />
-                            <Route component={ErrorComponent} />
+                            {/* <Route component={ErrorComponent} /> */}
                         </Switch>
-                        <FooterComponent />
                     </div>
                 </Router>
             </div>
@@ -34,4 +30,4 @@ class LoginApp extends Component {
     }
 }
 
-export default LoginApp
+export default LunchApp

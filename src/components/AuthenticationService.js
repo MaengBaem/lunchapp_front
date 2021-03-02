@@ -1,4 +1,5 @@
 import axios from 'axios'
+import jwt_decode from "jwt-decode";
 
 class AuthenticationService {
     executeJwtAuthenticationService(username, password) {
@@ -38,10 +39,21 @@ class AuthenticationService {
         localStorage.removeItem("token");
     }
 
-    isUserLoggedIn() {
+    isAuthCheck(role) {
         const token = localStorage.getItem('token');
         if (token) {
+            var decoded = jwt_decode(token);
             return true;
+        }
+        return false;
+    }
+
+    isAuthCheck(role) {
+        const token = localStorage.getItem('token');
+        if (token) {
+            var jwt = jwt_decode(token);
+            if (jwt.role === role)
+                return true;
         }
         return false;
     }
@@ -53,4 +65,4 @@ class AuthenticationService {
     }
 }
 
-export default new AuthenticationService()
+export default new AuthenticationService();

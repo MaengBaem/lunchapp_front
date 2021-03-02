@@ -2,10 +2,8 @@ import React, { Component } from 'react'
 import AuthenticationService from './AuthenticationService.js'
 
 class LoginComponent extends Component {
-
     constructor(props) {
         super(props)
-
         this.state = {
             username: localStorage.getItem("authenticatedUser") || '',
             password: '',
@@ -30,10 +28,8 @@ class LoginComponent extends Component {
         AuthenticationService
             .executeJwtAuthenticationService(this.state.username, this.state.password)
             .then((response) => {
-                console.log('여기')
-                console.log(response)
                 this.setState({
-                    token: response.data.jwttoken
+                    token: response.data.jwttoken,
                 });
                 AuthenticationService.registerSuccessfulLoginForJwt(this.state.username, this.state.token)
                 this.props.history.push(`/welcome/${this.state.username}`)
