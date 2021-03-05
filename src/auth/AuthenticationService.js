@@ -1,7 +1,10 @@
 import axios from 'axios'
+import { withCookies, Cookies } from 'react-cookie';
 import jwt_decode from "jwt-decode";
+import { ADMIN } from "./AuthRole";
 
 class AuthenticationService {
+
     executeJwtAuthenticationService(username, password) {
         return axios.post('http://localhost:8080/authenticate', {
             username,
@@ -13,10 +16,9 @@ class AuthenticationService {
         return axios.get('http://localhost:8080/hello');
     }
 
-    registerSuccessfulLoginForJwt(username, token) {
-        console.log("===registerSuccessfulLoginForJwt===")
+    registerSuccessfulLoginForJwt(token) {
+
         localStorage.setItem('token', token);
-        localStorage.setItem('authenticatedUser', username);
         this.setupAxiosInterceptors();
     }
 
@@ -35,33 +37,37 @@ class AuthenticationService {
     }
 
     logout() {
-        localStorage.removeItem("authenticatedUser");
         localStorage.removeItem("token");
     }
 
-    isAuthCheck(role) {
+    isLogin() {
         const token = localStorage.getItem('token');
         if (token) {
-            var decoded = jwt_decode(token);
             return true;
-        }
-        return false;
+        } else return false;
     }
 
     isAuthCheck(role) {
-        const token = localStorage.getItem('token');
-        if (token) {
-            var jwt = jwt_decode(token);
-            if (jwt.role === role)
-                return true;
+        //1. token 존재하는지 확인
+        if (role) {
+            const token = localStorage.getItem('token');
+            if (token) {
+                var jwt = jwt_decode(token);
+                // 2. 사용자 롤이 컴포넌트 롤과 같거나, 롤이 어드민인 경우
+                if (jwt.role === role || jwt.role === ADMIN)
+                    return true;
+            }
+            return false;
+        } else {
+            console.log('여기??')
+            return true;
         }
-        return false;
     }
 
     getLoggedInUserName() {
-        let user = localStorage.getItem('authenticatedUser');
-        if (user === null) return '';
-        return user;
+        let token = localStorage.getItem('token');
+        var jwt = jwt_decode(token);
+        return jwt.name;
     }
 }
 

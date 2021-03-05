@@ -23,6 +23,8 @@ ___
 
 9. npm i jwt-decode
 
+10. npm i react-cookie
+
 ___
 ## 메모
 1. 리덕스 툴킷

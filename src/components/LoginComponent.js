@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import AuthenticationService from './AuthenticationService.js'
+import AuthenticationService from '../auth/AuthenticationService.js'
 
 class LoginComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            username: localStorage.getItem("authenticatedUser") || '',
+            username: '',
             password: '',
             token: localStorage.getItem("token") || '',
             hasLoginFailed: false,
@@ -31,7 +31,7 @@ class LoginComponent extends Component {
                 this.setState({
                     token: response.data.jwttoken,
                 });
-                AuthenticationService.registerSuccessfulLoginForJwt(this.state.username, this.state.token)
+                AuthenticationService.registerSuccessfulLoginForJwt(this.state.token)
                 this.props.history.push(`/welcome/${this.state.username}`)
             }).catch(() => {
                 this.setState({ showSuccessMessage: false })
