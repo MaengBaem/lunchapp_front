@@ -25,6 +25,8 @@ ___
 
 10. npm i react-cookie
 
+11. npm i styled-components
+
 ___
 ## 메모
 1. 리덕스 툴킷
