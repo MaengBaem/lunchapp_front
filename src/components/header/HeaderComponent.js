@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom"
-import Button from '@material-ui/core/Button';
 import styled from 'styled-components'
+import Button from '@material-ui/core/Button';
 import AuthenticationService from '../../auth/AuthenticationService.js'
 import UserConfig from './UserConfig.js';
-import Menus from './Menus.js';
 
 const Header = styled.header`
     border-bottom:1px solid red;
-    padding : 15px 30px 20px 30px;
-    margin-bottom: 20px;
+    padding : 10px 30px 10px 30px;
     display:flex;
     justify-content:space-between;
     align-items: center;
@@ -20,7 +18,7 @@ const Side = styled.div`
 `;
 
 const Logo = styled.div`
-    font-size:30px;
+    font-size:24px;
     font-weight:800;
     display: flex;
     align-items: center;
@@ -59,7 +57,6 @@ export default class HeaderComponent extends Component {
             <Header>
                 <Side>
                     <Logo><Link to="/" style={LinkStyle}>Lunch App</Link></Logo>
-                    {isUserLoggedIn && <Menus />}
                 </Side>
                 <Side>
                     {isUserLoggedIn ? <UserConfig /> : <Link to="/login" style={LinkStyle}><Button style={loginStyle}>로그인</Button></Link>}
