@@ -5,8 +5,7 @@ import AuthenticationService from './AuthenticationService.js'
 class AuthenticatedRoute extends Component {
     render() {
         if (AuthenticationService.isAuthCheck(this.props.role)) {
-            console.log('통과')
-            return <Route {...this.props.component} />
+            return <Route {...this.props} />
         } else {
             return <Redirect to="/login" />
         }
