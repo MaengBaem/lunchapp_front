@@ -20,24 +20,26 @@ export default class AdminSide extends Component {
         return (
             <>
                 <List component="nav">
-                    <ListItem button>
-                        <Link style={LinkStyle} to="/todo-list">
+                    <Link style={LinkStyle} to="/todo-list">
+                        <ListItem button>
                             <ListItemIcon>
                                 <ListAltIcon />
                             </ListItemIcon>
                             <ListItemText primary="개발 일지" />
-                        </Link>
-                    </ListItem>
+                        </ListItem>
+                    </Link>
                     <ListItem button>
                         <ListItemIcon>
                             <EqualizerIcon />
                         </ListItemIcon>
                         <ListItemText primary="차트 관리" />
                     </ListItem>
-                    <ListItemIcon>
-                        <TableChartIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="차트" />
+                    <ListItem button>
+                        <ListItemIcon>
+                            <TableChartIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="차트" />
+                    </ListItem>
                 </List>
                 <Divider />
                 <List component="nav">

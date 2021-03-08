@@ -59,7 +59,11 @@ class HeaderComponent extends Component {
                     <Logo><Link to="/" style={LinkStyle}>Lunch App</Link></Logo>
                 </Side>
                 <Side>
-                    {isUserLoggedIn ? <UserConfig /> : <Link to="/login" style={LinkStyle}><Button style={loginStyle}>로그인</Button></Link>}
+                    {isUserLoggedIn
+                        ? <UserConfig />
+                        : window.location.href !== "http://localhost:3000/login"
+                            ? <Link to="/login" style={LinkStyle}><Button style={loginStyle}>로그인</Button></Link>
+                            : null}
                 </Side>
             </Header >
         )

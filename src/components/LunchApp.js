@@ -26,11 +26,12 @@ const MainComponent = styled.div`
 class LunchApp extends Component {
     render() {
         const HeaderWithRouter = withRouter(HeaderComponent);
+        const SideithRouter = withRouter(SideComponent);
         return (
             <Router>
                 <HeaderWithRouter />
                 <Main>
-                    <SideComponent />
+                    <SideithRouter />
                     <MainComponent>
                         <Switch>
                             <AuthRoute exact path="/" component={LunchChart} role={USER} />
