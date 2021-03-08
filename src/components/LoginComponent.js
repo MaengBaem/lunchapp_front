@@ -13,6 +13,8 @@ class LoginComponent extends Component {
         }
         this.handleChange = this.handleChange.bind(this)
         this.loginClicked = this.loginClicked.bind(this)
+        this.handleKeyPress = this.handleKeyPress.bind(this)
+
     }
 
     handleChange(event) {
@@ -23,6 +25,12 @@ class LoginComponent extends Component {
             }
         )
     }
+
+    handleKeyPress = (e) => {
+        if (e.key === "Enter") {
+            this.loginClicked();
+        }
+    };
 
     loginClicked() {
         AuthenticationService
@@ -46,8 +54,8 @@ class LoginComponent extends Component {
                 <div className="container">
                     {this.state.hasLoginFailed && <div className="alert alert-warning">Invalid Credentials</div>}
                     {this.state.showSuccessMessage && <div>Login Sucessful</div>}
-                    User Name: <input type="text" name="username" value={this.state.username} onChange={this.handleChange} />
-                    Password: <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
+                    User Name: <input type="text" name="username" value={this.state.username} onChange={this.handleChange} onKeyPress={this.handleKeyPress} />
+                    Password: <input type="password" name="password" value={this.state.password} onChange={this.handleChange} onKeyPress={this.handleKeyPress} />
                     <button className="btn btn-success" onClick={this.loginClicked}>Login</button>
                 </div>
             </div>
