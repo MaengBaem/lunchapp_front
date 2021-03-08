@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link, withRouter } from "react-router-dom"
 import Button from '@material-ui/core/Button';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -7,7 +8,7 @@ import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AuthenticationService from '../../auth/AuthService.js'
 
-export default class UserConfig extends Component {
+class UserConfig extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -15,6 +16,7 @@ export default class UserConfig extends Component {
         }
         this.handleClick = this.handleClick.bind(this)
         this.handleClose = this.handleClose.bind(this)
+        this.logout = this.logout.bind(this)
     }
 
     handleClick = (event) => {
@@ -24,6 +26,11 @@ export default class UserConfig extends Component {
     handleClose = () => {
         this.setState({ anchorEl: null });
     };
+
+    logout = () => {
+        AuthenticationService.logout();
+        this.props.history.push('/login');
+    }
     render() {
         return (
             <>
@@ -47,7 +54,7 @@ export default class UserConfig extends Component {
                     open={Boolean(this.state.anchorEl)}
                     onClose={this.handleClose}
                 >
-                    <MenuItem onClick={AuthenticationService.logout}>
+                    <MenuItem onClick={this.logout}>
                         <ListItemIcon>
                             <ExitToAppIcon fontSize="small" />
                         </ListItemIcon>
@@ -64,3 +71,4 @@ export default class UserConfig extends Component {
         )
     }
 }
+export default withRouter(UserConfig);

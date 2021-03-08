@@ -16,7 +16,6 @@ class AuthService {
     }
 
     registerSuccessfulLoginForJwt(token) {
-
         localStorage.setItem('token', token);
         this.setupAxiosInterceptors();
     }

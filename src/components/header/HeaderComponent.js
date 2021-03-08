@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from "react-router-dom"
+import { Link, withRouter } from "react-router-dom"
 import styled from 'styled-components'
 import Button from '@material-ui/core/Button';
 import AuthenticationService from '../../auth/AuthService.js'
@@ -33,7 +33,7 @@ const loginStyle = {
     fontSize: '18px',
 }
 
-export default class HeaderComponent extends Component {
+class HeaderComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -65,3 +65,4 @@ export default class HeaderComponent extends Component {
         )
     }
 }
+export default withRouter(HeaderComponent);
