@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import AuthenticationService from './AuthenticationService.js'
+import AuthService from "./AuthService";
 
-class AuthenticatedRoute extends Component {
+class AuthRoute extends Component {
     render() {
-        if (AuthenticationService.isAuthCheck(this.props.role)) {
+        if (AuthService.isAuthCheck(this.props.role)) {
             return <Route {...this.props} />
         } else {
             return <Redirect to="/login" />
         }
-
     }
 }
 
-export default AuthenticatedRoute
+export default AuthRoute

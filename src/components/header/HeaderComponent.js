@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from "react-router-dom"
 import styled from 'styled-components'
 import Button from '@material-ui/core/Button';
-import AuthenticationService from '../../auth/AuthenticationService.js'
+import AuthenticationService from '../../auth/AuthService.js'
 import UserConfig from './UserConfig.js';
 
 const Header = styled.header`

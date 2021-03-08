@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import AuthenticationService from '../auth/AuthenticationService.js'
+import AuthenticationService from '../auth/AuthService.js'
 
 class WelcomeComponent extends Component {
 

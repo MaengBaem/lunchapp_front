@@ -32,14 +32,13 @@ ___
 1. 리덕스 툴킷
 2. withsplitting 
 3. 폰트
-4. SASS 사용
+4. StyledComponent 사용
 5. 반응형
 
 ___
 ## page
 
 ### Login Page
-
 
 ### Chart Page
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import AuthenticationService from '../../auth/AuthenticationService.js'
+import AuthenticationService from '../../auth/AuthService.js'
 import { ADMIN } from "../../auth/AuthRole";
 import AdminSide from './AdminSide.js';
 import UserSide from './UserSide.js';

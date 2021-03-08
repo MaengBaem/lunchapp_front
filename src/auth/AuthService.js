@@ -3,7 +3,7 @@ import { withCookies, Cookies } from 'react-cookie';
 import jwt_decode from "jwt-decode";
 import { ADMIN } from "./AuthRole";
 
-class AuthenticationService {
+class AuthService {
     executeJwtAuthenticationService(username, password) {
         return axios.post('http://localhost:8080/authenticate', {
             username,
@@ -47,16 +47,17 @@ class AuthenticationService {
     }
 
     isAuthCheck(role) {
-        //1. token 존재하는지 확인
-        const token = localStorage.getItem('token');
-        if (role && token) {
+        const token = localStorage.getItem("token");
+        // 1. 토큰 존재해야 하고,
+        if (token) {
             var jwt = jwt_decode(token);
             // 2. 사용자 롤이 컴포넌트 롤과 같거나, 롤이 어드민인 경우
             if (jwt.role === role || jwt.role === ADMIN)
                 return true;
             else return false;
         } else {
-            return true;
+            // 토큰이 시간지나서 사라지면 axios로 다시 받아오기??
+            return false;
         }
     }
 
@@ -75,4 +76,4 @@ class AuthenticationService {
     }
 }
 
-export default new AuthenticationService();
+export default new AuthService();

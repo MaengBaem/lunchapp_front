@@ -5,7 +5,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { Menu, MenuItem } from '@material-ui/core';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import AuthenticationService from '../../auth/AuthenticationService.js'
+import AuthenticationService from '../../auth/AuthService.js'
 
 export default class UserConfig extends Component {
     constructor(props) {
