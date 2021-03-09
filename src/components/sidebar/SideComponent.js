@@ -9,6 +9,7 @@ import UserSide from './UserSide.js';
 const Side = styled.div`
     width:10%;
     padding-left: 10px;
+    display: ${(props) => (props.isUserLoggedIn ? 'auto' : 'none')};
     `;
 
 class SideComponent extends Component {
@@ -20,12 +21,10 @@ class SideComponent extends Component {
         const isUserLoggedIn = AuthenticationService.isLogin();
         const userRole = AuthenticationService.getLoggedInUserRole();
         return (
-            <Side>
-                {/* ADMIN : TABLE, TODO, USERMANAGE */}
-                {!isUserLoggedIn ? null
-                    : userRole === ADMIN
-                        ? <AdminSide />
-                        : <UserSide />}
+            <Side isUserLoggedIn={isUserLoggedIn}>
+                {userRole === ADMIN
+                    ? <AdminSide />
+                    : <UserSide />}
             </Side>
         )
     }

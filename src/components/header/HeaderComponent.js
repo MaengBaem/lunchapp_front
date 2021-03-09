@@ -11,6 +11,7 @@ const Header = styled.header`
     display:flex;
     justify-content:space-between;
     align-items: center;
+    display: ${(props) => (props.isUserLoggedIn ? 'auto' : 'none')};
     `;
 
 const Side = styled.div`
@@ -54,7 +55,7 @@ class HeaderComponent extends Component {
     render() {
         const isUserLoggedIn = AuthenticationService.isLogin();
         return (
-            <Header>
+            <Header isUserLoggedIn={isUserLoggedIn}>
                 <Side>
                     <Logo><Link to="/" style={LinkStyle}>Lunch App</Link></Logo>
                 </Side>
