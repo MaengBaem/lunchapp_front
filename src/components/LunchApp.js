@@ -20,7 +20,7 @@ const Main = styled.div`
     `;
 
 const MainComponent = styled.div`
-    width:100%;
+    width:85%;
 `;
 
 class LunchApp extends Component {

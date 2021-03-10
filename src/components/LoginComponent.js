@@ -79,8 +79,6 @@ class LoginComponent extends Component {
             })
     }
 
-
-
     render() {
         return (
             <LoginLayout>
