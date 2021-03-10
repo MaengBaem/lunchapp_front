@@ -9,7 +9,7 @@ import LoginComponent from "./LoginComponent";
 import WelcomeComponent from './WelcomeComponent.js';
 import LunchChart from "../pages/LunchChart";
 import LunchManage from "../pages/LunchManage";
-import ToDoList from "../pages/ToDoList";
+import ToDoPage from "../pages/ToDoPage";
 import { USER, ADMIN } from "../auth/AuthRole";
 import SideComponent from './sidebar/SideComponent.js';
 
@@ -37,7 +37,7 @@ class LunchApp extends Component {
                             <AuthRoute exact path="/" component={LunchChart} role={USER} />
                             <LoginRoute exact path="/login" component={LoginComponent} />
                             <AuthRoute exact path="/lunch-manage" component={LunchManage} role={ADMIN} />
-                            <AuthRoute exact path="/todo-list" component={ToDoList} role={USER} />
+                            <AuthRoute exact path="/todo-list" component={ToDoPage} role={USER} />
                             <AuthRoute exact path="/welcome/:name" component={WelcomeComponent} role={USER} />
                             {/* <Route component={ErrorComponent} /> */}
                         </Switch>

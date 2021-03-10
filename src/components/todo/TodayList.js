@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import MemoComponent from './MemoComponent';
 import TodoHeader from './TodoHeader';
 import PreComponent from './PreComponent';
-import List from "./List"
+import TodoList from "./TodoList"
 
 const TodoLayOut = styled.div`
     position:static;
@@ -48,7 +48,7 @@ export default class TodayList extends Component {
             <TodoLayOut>
                 <TodoHeader saveTime="2021-03-10 22:02:25" />
                 <PreComponent handleChange={this.handleChange} projectList={this.props.projectList} isDisable={this.state.isDisable} selectToggle={this.selectToggle} />
-                <List />
+                <TodoList />
                 <MemoComponent handleChange={this.handleChange} />
             </TodoLayOut>
         )

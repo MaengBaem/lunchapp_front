@@ -9,7 +9,7 @@ const TodoLayOut = styled.div`
     justify-content:center;
 `;
 
-export default class ToDoList extends Component {
+export default class ToDoPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
