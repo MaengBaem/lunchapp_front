@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 
 const MemoCompo = styled.div`
-   position: relative;
-    bottom:0;
+   padding-right: 10px;
 `;
 
 export default class MemoComponent extends Component {

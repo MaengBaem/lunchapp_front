@@ -12,8 +12,7 @@ const Header = styled.header`
     font-size:15px;
 `;
 
-const Buttons = styled.header`
-    margin-right:10px;
+const Buttons = styled.div`
 `;
 
 const ButtonStyle = { marginRight: '10px' }
