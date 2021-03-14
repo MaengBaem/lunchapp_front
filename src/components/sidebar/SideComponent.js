@@ -21,11 +21,13 @@ class SideComponent extends Component {
         const isUserLoggedIn = AuthenticationService.isLogin();
         const userRole = AuthenticationService.getLoggedInUserRole();
         return (
-            <Side isUserLoggedIn={isUserLoggedIn}>
-                {userRole === ADMIN
-                    ? <AdminSide />
-                    : <UserSide />}
-            </Side>
+            <>
+                <Side isUserLoggedIn={isUserLoggedIn}>
+                    {userRole === ADMIN
+                        ? <AdminSide />
+                        : <UserSide />}
+                </Side>
+            </>
         )
     }
 }

@@ -28,22 +28,24 @@ class LunchApp extends Component {
         const HeaderWithRouter = withRouter(HeaderComponent);
         const SideithRouter = withRouter(SideComponent);
         return (
-            <Router>
-                <HeaderWithRouter />
-                <Main>
-                    <SideithRouter />
-                    <MainComponent>
-                        <Switch>
-                            <AuthRoute exact path="/" component={LunchChart} role={USER} />
-                            <LoginRoute exact path="/login" component={LoginComponent} />
-                            <AuthRoute exact path="/lunch-manage" component={LunchManage} role={ADMIN} />
-                            <AuthRoute exact path="/todo-list" component={ToDoPage} role={USER} />
-                            <AuthRoute exact path="/welcome/:name" component={WelcomeComponent} role={USER} />
-                            {/* <Route component={ErrorComponent} /> */}
-                        </Switch>
-                    </MainComponent>
-                </Main>
-            </Router>
+            <>
+                <Router>
+                    <HeaderWithRouter />
+                    <Main>
+                        <SideithRouter />
+                        <MainComponent>
+                            <Switch>
+                                <AuthRoute exact path="/" component={LunchChart} role={USER} />
+                                <LoginRoute exact path="/login" component={LoginComponent} />
+                                <AuthRoute exact path="/lunch-manage" component={LunchManage} role={ADMIN} />
+                                <AuthRoute exact path="/todo-list" component={ToDoPage} role={USER} />
+                                <AuthRoute exact path="/welcome/:name" component={WelcomeComponent} role={USER} />
+                                {/* <Route component={ErrorComponent} /> */}
+                            </Switch>
+                        </MainComponent>
+                    </Main>
+                </Router>
+            </>
         )
     }
 }

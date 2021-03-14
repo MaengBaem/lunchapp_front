@@ -25,13 +25,12 @@ export default class ProjectSelect extends Component {
                 <FormControl style={SelectStyle}>
                     <InputLabel id="demo-simple-select-label">Project</InputLabel>
                     <NativeSelect
-                        labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         name="project"
                         onChange={this.props.handleChange}
                         disabled={this.props.isDisable}
                     >
-                        {this.props.projectList.map(project => <option value={project}>{project} </option>)}
+                        {this.props.projectList.map(project => <option key={project} value={project}>{project} </option>)}
                     </NativeSelect>
                 </FormControl>
                 <Button variant="outlined" color="primary" size="small" style={ButtonStyle} onClick={this.props.selectToggle} >

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import TextField from '@material-ui/core/TextField';
 
 const MemoCompo = styled.div`
+    margin-top:30px;
    padding-right: 10px;
 `;
 

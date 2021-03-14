@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
-import TodayList from "../components/todo/TodayList"
+import TodayList from '../components/todo/daymodal/TodayList';
 
 const TodoLayOut = styled.div`
     display: flex;

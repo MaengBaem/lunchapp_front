@@ -55,18 +55,20 @@ class HeaderComponent extends Component {
     render() {
         const isUserLoggedIn = AuthenticationService.isLogin();
         return (
-            <Header isUserLoggedIn={isUserLoggedIn}>
-                <Side>
-                    <Logo><Link to="/" style={LinkStyle}>Lunch App</Link></Logo>
-                </Side>
-                <Side>
-                    {isUserLoggedIn
-                        ? <UserConfig />
-                        : window.location.href !== "http://localhost:3000/login"
-                            ? <Link to="/login" style={LinkStyle}><Button style={loginStyle}>로그인</Button></Link>
-                            : null}
-                </Side>
-            </Header >
+            <>
+                <Header isUserLoggedIn={isUserLoggedIn}>
+                    <Side>
+                        <Logo><Link to="/" style={LinkStyle}>Lunch App</Link></Logo>
+                    </Side>
+                    <Side>
+                        {isUserLoggedIn
+                            ? <UserConfig />
+                            : window.location.href !== "http://localhost:3000/login"
+                                ? <Link to="/login" style={LinkStyle}><Button style={loginStyle}>로그인</Button></Link>
+                                : null}
+                    </Side>
+                </Header >
+            </>
         )
     }
 }
