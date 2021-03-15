@@ -15,7 +15,8 @@ export default class TodoList extends Component {
         return (
             <ListComponent>
                 {todoList && todoList.map((item, index) =>
-                    <TodoItem key={index} item={item} setUpdate={this.props.setUpdate} deleteItem={this.props.deleteItem} checkItem={this.props.checkItem}
+                    <TodoItem key={index} item={item} setUpdate={this.props.setUpdate}
+                        addSubItem={this.props.addSubItem} deleteItem={this.props.deleteItem} checkItem={this.props.checkItem}
                     />)}
                 <AddItem item={this.props.newItem} addItem={this.props.addItem} setNewItem={this.props.setNewItem} />
             </ListComponent>

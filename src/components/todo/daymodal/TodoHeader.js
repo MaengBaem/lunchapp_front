@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const Header = styled.header`
     display:flex;
@@ -31,10 +32,19 @@ export default class TodoHeader extends Component {
                         variant="outlined"
                         color="primary"
                         size="small"
+                        startIcon={<DeleteIcon />}
+                        style={ButtonStyle}
+                    >
+                        삭제
+                    </Button>
+                    <Button
+                        variant="outlined"
+                        color="primary"
+                        size="small"
                         startIcon={<SaveIcon />}
                         style={ButtonStyle}
                     >
-                        Save
+                        저장
                     </Button>
                     <Button variant="outlined" size="small">X</Button>
                 </Buttons>

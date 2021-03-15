@@ -16,6 +16,9 @@ const ItemCompo = styled.div`
 
 const ItemButton = styled.div`
     cursor: pointer;
+    &:hover{
+        opacity:0.7;
+    }
     &:active {
         transform: scale(0.9);
       }

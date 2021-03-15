@@ -12,6 +12,9 @@ const TodoLayOut = styled.div`
     width:800px;
     max-height:800px;
     overflow-y:scroll;
+    box-shadow :8px 10px 5px gray;
+    border:1px solid black;
+    border-radius : 5px;
 `;
 
 export default class TodayList extends Component {
@@ -19,7 +22,12 @@ export default class TodayList extends Component {
         super(props)
         this.state = {
             isDisable: false,
-            todoList: [{ key: 1, text: "첫번째 메모", isComplete: false, }, { key: 2, text: "두번째 메모", isComplete: true, }],
+            todoList: [{ key: 1, text: "첫번째 메모", isComplete: false, children: [] },
+            {
+                key: 2, text: "두번째 메모", isComplete: true,
+                children: [{ key: 3, text: "첫번째 메모-1", isComplete: false, children: [] },
+                { key: 4, text: "첫번째 메모-2", isComplete: false, children: [{ key: 5, text: "첫번째 메모-2-1", isComplete: false, children: [] }] }]
+            }],
             newItem: { key: "", text: "", isComplete: false }
         }
         this.handleChange = this.handleChange.bind(this);
@@ -29,6 +37,8 @@ export default class TodayList extends Component {
         this.setUpdate = this.setUpdate.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
         this.setNewItem = this.setNewItem.bind(this);
+        this.addSubItem = this.addSubItem.bind(this);
+        this.test = this.test.bind(this);
     }
 
     handleChange(event) {
@@ -54,11 +64,38 @@ export default class TodayList extends Component {
         todoList.map(item => {
             if (item.key === key) {
                 item.text = text;
+            } else if (item.children) {
+                item.children.map(child => {
+                    if (child.key === key) {
+                        child.text = text;
+                    }
+                })
             }
         });
         this.setState({
             todoList: todoList
         })
+    }
+
+    // 3단계 까지만
+    addSubItem = (key) => {
+        const newChild = { key: Math.random(), text: "", isComplete: false, children: [] };
+        const todoList = this.state.todoList;
+        todoList.map((item) => {
+            if (item.key === key) {
+                item.children = [...item.children, newChild];
+            } else if (item.children) {
+                item.children.map(child => {
+                    if (child.key === key) {
+                        child.children = [...child.children, newChild]
+                    }
+                })
+            }
+        });
+        this.setState({
+            todoList: todoList
+        })
+
     }
 
     addItem = () => {
@@ -80,10 +117,27 @@ export default class TodayList extends Component {
     }
 
     deleteItem = (key) => {
-        const filterList = this.state.todoList.filter(item => item.key !== key);
+        // const filterList = this.state.todoList.filter(item => {item.key !== key);
+        const filterList = [];
+        this.state.todoList.map(item => {
+            if (item.key !== key) {
+                const filterChildList = item.children.filter(child => child.key !== key);
+                item.children = filterChildList;
+                filterList.push(item);
+            }
+        })
         this.setState({
             todoList: filterList
         })
+    }
+
+    test = (item, key) => {
+        const result = true;
+        for (let i = 0; i < item.children; i++) {
+            if (item.children[i].key === key)
+                result = false;
+        }
+        return result;
     }
 
     checkItem = (key) => {
@@ -104,7 +158,7 @@ export default class TodayList extends Component {
                 <TodoHeader saveTime="2021-03-10 22:02:25" />
                 <PreComponent handleChange={this.handleChange} projectList={this.props.projectList}
                     isDisable={this.state.isDisable} selectToggle={this.selectToggle} />
-                <TodoList todoList={this.state.todoList} setUpdate={this.setUpdate} addItem={this.addItem}
+                <TodoList todoList={this.state.todoList} setUpdate={this.setUpdate} addItem={this.addItem} addSubItem={this.addSubItem}
                     deleteItem={this.deleteItem} setNewItem={this.setNewItem} newItem={this.state.newItem} checkItem={this.checkItem} />
                 <MemoComponent handleChange={this.handleChange} />
             </TodoLayOut>

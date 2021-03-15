@@ -5,7 +5,6 @@ import TodayList from '../components/todo/daymodal/TodayList';
 const TodoLayOut = styled.div`
     display: flex;
     min-height: 100vh;
-    background-color:lightblue;
     justify-content:center;
 `;
 
