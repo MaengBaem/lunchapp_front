@@ -9,6 +9,7 @@ const LoginLayout = styled.div`
     justify-content:center;
     min-height: 100vh;
 `;
+
 const LoginForm = styled.div`
     display: flex;
     flex-direction:column;

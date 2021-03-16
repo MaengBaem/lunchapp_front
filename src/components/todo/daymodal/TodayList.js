@@ -1,19 +1,19 @@
-import React, { Component } from 'react'
-import styled from 'styled-components';
-import MemoComponent from './MemoComponent';
-import TodoHeader from './TodoHeader';
-import PreComponent from './PreComponent';
-import TodoList from "./TodoList"
+import React, { Component } from "react";
+import styled from "styled-components";
+import MemoComponent from "./MemoComponent";
+import TodoHeader from "./TodoHeader";
+import PreComponent from "./PreComponent";
+import TodoList from "./TodoList";
+import PostFunc from "../../../api/PostFunc";
 
 const TodoLayOut = styled.div`
     position:static;
     background-color:#fff;
+    margin-top:15px;
     padding:10px 5px 25px 25px;
     width:800px;
     max-height:800px;
     overflow-y:scroll;
-    box-shadow :8px 10px 5px gray;
-    border:1px solid black;
     border-radius : 5px;
 `;
 

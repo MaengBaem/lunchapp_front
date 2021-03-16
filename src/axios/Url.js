@@ -1,1 +1,0 @@
-export const ITEM_LIST = "/todo/item-list";

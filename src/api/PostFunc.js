@@ -1,5 +1,5 @@
-import axios from 'axios'
-import { ITEM_ADD, ITEM_LIST } from "./Url";
+import axios from "axios";
+import { ITEM_LIST, ITEM_ADD, GET_PROJECTS } from "./Url";
 
 const URL = "http://localhost:8080";
 
@@ -13,6 +13,8 @@ class PostFunc {
     getTodayList() {
         return axios.post(URL + ITEM_LIST);
     }
+
+
 }
 
 export default new PostFunc();
