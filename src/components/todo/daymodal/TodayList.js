@@ -4,7 +4,6 @@ import MemoComponent from "./MemoComponent";
 import TodoHeader from "./TodoHeader";
 import PreComponent from "./PreComponent";
 import TodoList from "./TodoList";
-import PostFunc from "../../../api/PostFunc";
 
 const TodoLayOut = styled.div`
     position:static;
@@ -13,9 +12,10 @@ const TodoLayOut = styled.div`
     padding:10px 5px 25px 25px;
     width:800px;
     max-height:800px;
-    overflow-y:scroll;
     border-radius : 5px;
+    overflow-y:scroll;
 `;
+
 
 export default class TodayList extends Component {
     constructor(props) {
@@ -39,6 +39,11 @@ export default class TodayList extends Component {
         this.setNewItem = this.setNewItem.bind(this);
         this.addSubItem = this.addSubItem.bind(this);
         this.test = this.test.bind(this);
+        this.saveMaster = this.saveMaster.bind(this);
+        this.deleteMaster = this.deleteMaster.bind(this);
+        this.copyMaster = this.copyMaster.bind(this);
+        this.close = this.close.bind(this);
+
     }
 
     handleChange(event) {
@@ -152,10 +157,26 @@ export default class TodayList extends Component {
         })
     }
 
+    saveMaster = () => {
+
+    }
+
+    deleteMaster = () => {
+
+    }
+
+    copyMaster = () => {
+
+    }
+
+    close = () => {
+
+    }
+
     render() {
         return (
             <TodoLayOut>
-                <TodoHeader saveTime="2021-03-10 22:02:25" />
+                <TodoHeader saveTime="2021-03-10 22:02:25" saveMaster={this.saveMaster} deleteMaster={this.deleteMaster} copyMaster={this.copyMaster} close={this.close} />
                 <PreComponent handleChange={this.handleChange} projectList={this.props.projectList}
                     isDisable={this.state.isDisable} selectToggle={this.selectToggle} />
                 <TodoList todoList={this.state.todoList} setUpdate={this.setUpdate} addItem={this.addItem} addSubItem={this.addSubItem}

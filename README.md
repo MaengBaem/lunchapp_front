@@ -27,6 +27,7 @@ ___
 
 11. npm i styled-components
 
+12. npm install @material-ui/data-grid
 ___
 ## 메모
 1. 리덕스 툴킷

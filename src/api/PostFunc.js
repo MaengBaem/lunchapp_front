@@ -1,19 +1,27 @@
 import axios from "axios";
-import { ITEM_LIST, ITEM_ADD, GET_PROJECTS } from "./Url";
+import { COMPANY_CREATE, COMPANY_MODIFY, COMPANY_DELETE } from "./PostUrl";
 
 const URL = "http://localhost:8080";
 
 class PostFunc {
-    addItem(username, password) {
-        return axios.post(URL + ITEM_ADD, {
-            username,
-            password
+    createCompany(companyName) {
+        return axios.post(URL + COMPANY_CREATE, {
+            companyName: companyName,
         })
     }
-    getTodayList() {
-        return axios.post(URL + ITEM_LIST);
+
+    modifyCompany(id, companyName) {
+        return axios.post(URL + COMPANY_MODIFY, {
+            id: id,
+            companyName: companyName,
+        })
     }
 
+    deleteCompany(id) {
+        return axios.post(URL + COMPANY_DELETE, {
+            id: id,
+        })
+    }
 
 }
 

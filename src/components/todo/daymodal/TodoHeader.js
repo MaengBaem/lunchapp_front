@@ -11,6 +11,8 @@ const Header = styled.header`
     color:#f58142;
     margin-bottom:20px;
     font-size:15px;
+    padding-bottom : 15px;
+    border-bottom:1px solid gray;
 `;
 
 const Buttons = styled.div`
@@ -25,7 +27,7 @@ export default class TodoHeader extends Component {
             <Header>
                 {this.props.saveTime}
                 <Buttons>
-                    <Button variant="outlined" color="primary" size="small" style={ButtonStyle}>
+                    <Button variant="outlined" color="primary" size="small" style={ButtonStyle} onClick={this.copyMaster}>
                         불러오기
                     </Button>
                     <Button
@@ -34,6 +36,7 @@ export default class TodoHeader extends Component {
                         size="small"
                         startIcon={<DeleteIcon />}
                         style={ButtonStyle}
+                        onClick={this.deleteMaster}
                     >
                         삭제
                     </Button>
@@ -43,6 +46,7 @@ export default class TodoHeader extends Component {
                         size="small"
                         startIcon={<SaveIcon />}
                         style={ButtonStyle}
+                        onClick={this.props.saveMaster}
                     >
                         저장
                     </Button>

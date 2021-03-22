@@ -9,6 +9,7 @@ import ListAltIcon from '@material-ui/icons/ListAlt';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import TableChartIcon from '@material-ui/icons/TableChart';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
+import AccountTreeIcon from '@material-ui/icons/AccountTree';
 
 const LinkStyle = {
     textDecoration: 'none',
@@ -42,6 +43,14 @@ export default class AdminSide extends Component {
                     </ListItem>
                 </List>
                 <Divider />
+                <Link style={LinkStyle} to="/project-manage">
+                    <ListItem button>
+                        <ListItemIcon>
+                            <AccountTreeIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="프로젝트 관리" />
+                    </ListItem>
+                </Link>
                 <List component="nav">
                     <ListItem button>
                         <ListItemIcon>
