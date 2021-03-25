@@ -5,12 +5,11 @@ import Button from '@material-ui/core/Button';
 
 const ProjectCompo = styled.div`
     background-color:#fff;
-    width:100%;
     padding: 20px;
 `;
 
 const TableCompo = styled.div`
-    width:80%;
+    width:100%;
     height: 500px;
 `;
 
@@ -23,12 +22,13 @@ export default class ProjectComponent extends Component {
         const columns = [
             { field: 'title', headerName: '이름', width: 200 },
             { field: 'desc', headerName: '내용', width: 200 },
+            { field: 'companyName', headerName: '회사', width: 200 },
+            { field: 'status', headerName: '진행 여부', width: 200 },
             { field: 'startDate', headerName: '시작일', width: 200 },
             { field: 'endDate', headerName: '종료일', width: 200 },
             {
                 field: 'modify',
                 headerName: '수정',
-                width: 150,
                 renderCell: (params) => (
                     <Button
                         variant="contained"
@@ -44,7 +44,6 @@ export default class ProjectComponent extends Component {
             {
                 field: 'delete',
                 headerName: '삭제',
-                width: 150,
                 renderCell: (params) => (
                     <Button
                         variant="contained"

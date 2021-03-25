@@ -4,6 +4,7 @@ import CompanyMangement from '../components/project/company/CompanyMangement';
 import ProjectManagement from '../components/project/project/ProjectManagement';
 
 const ProjectLayOut = styled.div`
+    
     display: flex;
     min-height: 100vh;
     flex-direction : column;

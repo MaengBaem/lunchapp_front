@@ -12,7 +12,7 @@ export default class CreateCompany extends Component {
                 type="text"
                 fullWidth
                 onChange={this.props.onCompanyChange}
-                value={this.props.prevInfo ? this.props.prevInfo : ""}
+                value={this.props.prevInfo && this.props.prevInfo}
             />
         )
     }

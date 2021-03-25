@@ -40,6 +40,7 @@ class LunchApp extends Component {
                                 <LoginRoute exact path="/login" component={LoginComponent} />
                                 <AuthRoute exact path="/lunch-manage" component={LunchManage} role={ADMIN} />
                                 <AuthRoute exact path="/project-manage" component={ProjectManage} role={ADMIN} />
+                                <AuthRoute exact path="/member-manage" component={ProjectManage} role={ADMIN} />
                                 <AuthRoute exact path="/todo-list" component={ToDoPage} role={USER} />
                                 <AuthRoute exact path="/welcome/:name" component={WelcomeComponent} role={USER} />
                                 {/* <Route component={ErrorComponent} /> */}

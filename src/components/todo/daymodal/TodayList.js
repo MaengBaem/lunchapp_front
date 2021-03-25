@@ -4,6 +4,7 @@ import MemoComponent from "./MemoComponent";
 import TodoHeader from "./TodoHeader";
 import PreComponent from "./PreComponent";
 import TodoList from "./TodoList";
+import GetFunc from "../../../api/GetFunc";
 
 const TodoLayOut = styled.div`
     position:static;
@@ -21,6 +22,7 @@ export default class TodayList extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            projectList: [{ id: "0", title: "None" }],
             isDisable: false,
             todoList: [{ key: 1, text: "첫번째 메모", isComplete: false, children: [] },
             {
@@ -44,6 +46,16 @@ export default class TodayList extends Component {
         this.copyMaster = this.copyMaster.bind(this);
         this.close = this.close.bind(this);
 
+    }
+    componentDidMount() {
+        GetFunc.allProject().then(res => {
+            if (res.data.result) {
+                let projects = [...this.state.projectList, ...res.data.data]
+                this.setState({ projectList: projects })
+            } else {
+                alert(res.data.result);
+            }
+        })
     }
 
     handleChange(event) {
@@ -177,7 +189,7 @@ export default class TodayList extends Component {
         return (
             <TodoLayOut>
                 <TodoHeader saveTime="2021-03-10 22:02:25" saveMaster={this.saveMaster} deleteMaster={this.deleteMaster} copyMaster={this.copyMaster} close={this.close} />
-                <PreComponent handleChange={this.handleChange} projectList={this.props.projectList}
+                <PreComponent handleChange={this.handleChange} projectList={this.state.projectList}
                     isDisable={this.state.isDisable} selectToggle={this.selectToggle} />
                 <TodoList todoList={this.state.todoList} setUpdate={this.setUpdate} addItem={this.addItem} addSubItem={this.addSubItem}
                     deleteItem={this.deleteItem} setNewItem={this.setNewItem} newItem={this.state.newItem} checkItem={this.checkItem} />

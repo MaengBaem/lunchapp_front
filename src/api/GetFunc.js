@@ -1,14 +1,46 @@
 import axios from 'axios'
-import { PROJECT_ALL, COMPANY_ALL } from "./GetUrl";
+import { PROJECT_ALL, COMPANY_ALL, PROJECT_PRV } from "./GetUrl";
 
 const URL = "http://localhost:8080";
 
 class GetFunc {
-    allProject() {
-        return axios.get(URL + PROJECT_ALL);
+
+    setupAxiosInterceptors() {
+        axios.interceptors.request.use(
+            config => {
+                const token = localStorage.getItem('token');
+                if (token) {
+                    config.headers['Authorization'] = 'Bearer ' + token;
+                }
+                return config;
+            },
+            error => {
+                Promise.reject(error)
+            });
     }
+
+    allProject() {
+        const token = localStorage.getItem('token');
+        let config = {
+            headers: { Authorization: 'Bearer ' + token }
+        }
+        return axios.get(URL + PROJECT_ALL, config);
+    }
+
     allCompany() {
-        return axios.get(URL + COMPANY_ALL);
+        const token = localStorage.getItem('token');
+        let config = {
+            headers: { Authorization: 'Bearer ' + token }
+        }
+        return axios.get(URL + COMPANY_ALL, config);
+    }
+
+    allProjectMaterial() {
+        const token = localStorage.getItem('token');
+        let config = {
+            headers: { Authorization: 'Bearer ' + token }
+        }
+        return axios.get(URL + PROJECT_PRV, config);
     }
 }
 

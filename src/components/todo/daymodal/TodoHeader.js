@@ -50,7 +50,7 @@ export default class TodoHeader extends Component {
                     >
                         저장
                     </Button>
-                    <Button variant="outlined" size="small">X</Button>
+                    <Button variant="outlined" size="small" style={{ color: "#3f51b5" }}>X</Button>
                 </Buttons>
             </Header>
         )

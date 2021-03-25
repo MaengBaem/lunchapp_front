@@ -5,12 +5,12 @@ import Button from '@material-ui/core/Button';
 
 const CompanyCompo = styled.div`
     background-color:#fff;
-    width:100%;
     padding: 20px;
 `;
 
 const TableCompo = styled.div`
-    width:80%;
+     width:100%;
+
     height: 500px;
 `;
 

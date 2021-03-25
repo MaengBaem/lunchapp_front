@@ -17,6 +17,7 @@ const CreateDate = styled.div`
 
 export default class PreComponent extends Component {
     render() {
+        console.log(this.props.projectList)
         return (
             <PreCompo>
                 <ProjectSelect handleChange={this.props.handleChange} projectList={this.props.projectList} isDisable={this.props.isDisable} selectToggle={this.props.selectToggle} />

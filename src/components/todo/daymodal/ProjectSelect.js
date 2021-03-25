@@ -30,7 +30,7 @@ export default class ProjectSelect extends Component {
                         onChange={this.props.handleChange}
                         disabled={this.props.isDisable}
                     >
-                        {this.props.projectList.map(project => <option key={project.key} value={project.key}>{project.value} </option>)}
+                        {this.props.projectList.map(project => <option key={project.id} value={project.id}>{project.title} </option>)}
                     </NativeSelect>
                 </FormControl>
                 <Button variant="outlined" color="primary" size="small" style={ButtonStyle} onClick={this.props.selectToggle} >
