@@ -51,14 +51,14 @@ export default class AdminSide extends Component {
                         <ListItemText primary="프로젝트 관리" />
                     </ListItem>
                 </Link>
-                <List component="nav">
+                <Link style={LinkStyle} to="/member-manage">
                     <ListItem button>
                         <ListItemIcon>
                             <AccountBoxIcon />
                         </ListItemIcon>
                         <ListItemText primary="계정 관리" />
                     </ListItem>
-                </List>
+                </Link>
             </>
         )
     }

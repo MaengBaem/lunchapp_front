@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { PROJECT_ALL, COMPANY_ALL, PROJECT_PRV } from "./GetUrl";
+import { PROJECT_ALL, COMPANY_ALL, PROJECT_PRV, MEMBER_ALL, MEMBER_PRV } from "./GetUrl";
 
 const URL = "http://localhost:8080";
 
@@ -41,6 +41,22 @@ class GetFunc {
             headers: { Authorization: 'Bearer ' + token }
         }
         return axios.get(URL + PROJECT_PRV, config);
+    }
+
+    allMember() {
+        const token = localStorage.getItem('token');
+        let config = {
+            headers: { Authorization: 'Bearer ' + token }
+        }
+        return axios.get(URL + MEMBER_ALL, config);
+    }
+
+    getRoleList() {
+        const token = localStorage.getItem('token');
+        let config = {
+            headers: { Authorization: 'Bearer ' + token }
+        }
+        return axios.get(URL + MEMBER_PRV, config);
     }
 }
 

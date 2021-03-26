@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import GetFunc from '../../../api/GetFunc';
 import PostFunc from '../../../api/PostFunc';
 import CreateCompany from "../modal/CreateCompany";
-import DialogModal from '../modal/DialogModal';
+import DialogModal from '../../common/DialogModal';
 import CompanyComponent from "./CompanyComponent";
-import { CREATE, MODIFY, DELETE, SUCCESS } from "../../../common/Constants";
+import { CREATE, MODIFY, DELETE, SUCCESS, MODIFY_KR, DELETE_KR, CREATE_KR } from "../../../common/Constants";
 
 export default class CompanyMangement extends Component {
     constructor() {
@@ -82,9 +82,9 @@ export default class CompanyMangement extends Component {
         }
     }
 
-    createCompany() { this.setState({ open: true, modalType: CREATE, modalTitle: "등록" }) }
-    modifyCompany(row) { this.setState({ open: true, modalType: MODIFY, modalTitle: "수정", select: row.id, companyName: row.companyName }) }
-    deleteCompany(id) { this.setState({ open: true, modalType: DELETE, modalTitle: "삭제", select: id }) }
+    createCompany() { this.setState({ open: true, modalType: CREATE, modalTitle: CREATE_KR }) }
+    modifyCompany(row) { this.setState({ open: true, modalType: MODIFY, modalTitle: MODIFY_KR, select: row.id, companyName: row.companyName }) }
+    deleteCompany(id) { this.setState({ open: true, modalType: DELETE, modalTitle: DELETE_KR, select: id }) }
 
     renderModal() {
         let type = this.state.modalType;

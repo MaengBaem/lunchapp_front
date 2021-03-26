@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import GetFunc from '../../../api/GetFunc';
-import DialogModal from '../modal/DialogModal';
+import DialogModal from '../../common/DialogModal';
 import ProjectComponent from './ProjectComponent';
-import { CREATE, MODIFY, DELETE, SUCCESS } from "../../../common/Constants";
+import { CREATE, MODIFY, DELETE, SUCCESS, MODIFY_KR, CREATE_KR, DELETE_KR } from "../../../common/Constants";
 import CreateProject from '../modal/CreateProject';
 import PostFunc from '../../../api/PostFunc';
 
@@ -52,11 +52,10 @@ export default class ProjectManagement extends Component {
     createProject() {
         GetFunc.allProjectMaterial().then(res => {
             if (res.data.result) {
-                console.log(res.data)
                 let noneCompany = [{ id: "0", companyName: "" }];
                 let companys = [...noneCompany, ...res.data.data.companyList]
                 this.setState({
-                    companyList: companys, statusList: res.data.data.statusList, open: true, modalType: CREATE, modalTitle: "등록",
+                    companyList: companys, statusList: res.data.data.statusList, open: true, modalType: CREATE, modalTitle: CREATE_KR,
                     info: { companyId: res.data.data.companyList[0].id, statusId: res.data.data.statusList[0].id }
                 })
             } else {
@@ -69,7 +68,7 @@ export default class ProjectManagement extends Component {
         GetFunc.allProjectMaterial().then(res => {
             if (res.data.result) {
                 this.setState({
-                    companyList: res.data.data.companyList, statusList: res.data.data.statusList, open: true, modalType: MODIFY, modalTitle: "수정",
+                    companyList: res.data.data.companyList, statusList: res.data.data.statusList, open: true, modalType: MODIFY, modalTitle: MODIFY_KR,
                     info: { id: row.id, companyId: row.companyId, desc: row.desc, endDate: row.endDate, startDate: row.startDate, status: row.status, statusId: row.statusId, title: row.title }
                 })
             } else {
@@ -78,7 +77,7 @@ export default class ProjectManagement extends Component {
         })
     }
 
-    deleteProject(id) { this.setState({ open: true, modalType: DELETE, modalTitle: "삭제", select: id }) }
+    deleteProject(id) { this.setState({ open: true, modalType: DELETE, modalTitle: DELETE_KR, select: id }) }
 
 
     handleOk() {
@@ -115,7 +114,7 @@ export default class ProjectManagement extends Component {
 
     resultAction(res) {
         if (res.data.result === SUCCESS) {
-            this.setState({ projectList: res.data.data, open: false, modalType: "", select: "" });
+            this.setState({ projectList: res.data.data, open: false, modalTitle: "", modalType: "", select: "" });
         } else {
             alert(res.data.result);
         }

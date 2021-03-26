@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
+import styled from "styled-components";
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
-import styled from "styled-components";
 
-const SelectStyle = {
+const selectStyle = {
     margin: 'theme.spacing(1)',
     minWidth: '230px',
     marginBottom: "30px"
@@ -70,7 +70,7 @@ export default class CreateProject extends Component {
                     onChange={this.props.onHandleChange}
                     style={common}
                 />
-                <FormControl style={SelectStyle}>
+                <FormControl style={selectStyle}>
                     <NativeSelect
                         id="companyId"
                         onChange={this.props.onHandleChange}
@@ -79,7 +79,7 @@ export default class CreateProject extends Component {
                         {this.props.companyList.map(company => <option key={company.id} value={company.id}>{company.value} </option>)}
                     </NativeSelect>
                 </FormControl>
-                <FormControl style={SelectStyle}>
+                <FormControl style={selectStyle}>
                     <NativeSelect
                         id="statusId"
                         onChange={this.props.onHandleChange}

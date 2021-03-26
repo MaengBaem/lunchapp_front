@@ -46,8 +46,6 @@ class LoginComponent extends Component {
         }
         this.handleChange = this.handleChange.bind(this)
         this.loginClicked = this.loginClicked.bind(this)
-        this.handleKeyPress = this.handleKeyPress.bind(this)
-
     }
 
     handleChange(event) {
@@ -59,16 +57,12 @@ class LoginComponent extends Component {
         )
     }
 
-    handleKeyPress = (e) => {
-        if (e.key === "Enter") {
-            this.loginClicked();
-        }
-    };
-
-    loginClicked() {
+    loginClicked(e) {
+        e.preventDefault();
         AuthenticationService
             .executeJwtAuthenticationService(this.state.username, this.state.password)
             .then((response) => {
+                console.log(response)
                 this.setState({
                     token: response.data.jwttoken,
                 });
@@ -87,14 +81,14 @@ class LoginComponent extends Component {
                     <LoginHeader>LOGIN</LoginHeader>
                     <form onSubmit={this.loginClicked}>
                         <InputLayout>
-                            <TextField label="Name" name="username" variant="outlined" style={InputSize} onChange={this.handleChange} onKeyPress={this.handleKeyPress} />
+                            <TextField label="Name" name="username" variant="outlined" style={InputSize} onChange={this.handleChange} />
                         </InputLayout>
                         <InputLayout>
-                            <TextField label="password" name="password" variant="outlined" style={InputSize}
+                            <TextField label="password" name="password" type="password" variant="outlined" style={InputSize}
                                 onChange={this.handleChange}
                                 onKeyPress={this.handleKeyPress} />
                         </InputLayout>
-                        <Button variant="contained" color="primary" style={ButtonStyle} tyle="submit">
+                        <Button variant="contained" color="primary" style={ButtonStyle} type="submit" >
                             로그인
                     </Button>
                     </form>
