@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import LoginRoute from "../auth/LoginRoute";
 import AuthRoute from '../auth/AuthRoute.js'
 import HeaderComponent from './header/HeaderComponent';
-import LoginComponent from "./LoginComponent";
+import Login from "../pages/Login";
 import WelcomeComponent from './WelcomeComponent.js';
 import LunchChart from "../pages/LunchChart";
 import LunchManage from "../pages/LunchManage";
@@ -38,7 +38,7 @@ class LunchApp extends Component {
                         <MainComponent>
                             <Switch>
                                 <AuthRoute exact path="/" component={LunchChart} role={USER} />
-                                <LoginRoute exact path="/login" component={LoginComponent} />
+                                <LoginRoute exact path="/login" component={Login} />
                                 <AuthRoute exact path="/lunch-manage" component={LunchManage} role={ADMIN} />
                                 <AuthRoute exact path="/project-manage" component={ProjectManage} role={ADMIN} />
                                 <AuthRoute exact path="/member-manage" component={MemberManage} role={ADMIN} />

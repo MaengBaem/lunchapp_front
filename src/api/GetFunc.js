@@ -1,63 +1,22 @@
-import axios from 'axios'
+import Axios from "./Axios";
 import { PROJECT_ALL, COMPANY_ALL, PROJECT_PRV, MEMBER_ALL, MEMBER_PRV } from "./GetUrl";
 
-const URL = "http://localhost:8080";
+const GET = "get";
 
-class GetFunc {
-
-    setupAxiosInterceptors() {
-        axios.interceptors.request.use(
-            config => {
-                const token = localStorage.getItem('token');
-                if (token) {
-                    config.headers['Authorization'] = 'Bearer ' + token;
-                }
-                return config;
-            },
-            error => {
-                Promise.reject(error)
-            });
-    }
-
+export default {
     allProject() {
-        const token = localStorage.getItem('token');
-        let config = {
-            headers: { Authorization: 'Bearer ' + token }
-        }
-        return axios.get(URL + PROJECT_ALL, config);
-    }
-
+        return Axios({ url: PROJECT_ALL, method: GET });
+    },
     allCompany() {
-        const token = localStorage.getItem('token');
-        let config = {
-            headers: { Authorization: 'Bearer ' + token }
-        }
-        return axios.get(URL + COMPANY_ALL, config);
-    }
-
+        return Axios({ url: COMPANY_ALL, method: GET });
+    },
     allProjectMaterial() {
-        const token = localStorage.getItem('token');
-        let config = {
-            headers: { Authorization: 'Bearer ' + token }
-        }
-        return axios.get(URL + PROJECT_PRV, config);
-    }
-
+        return Axios({ url: PROJECT_PRV, method: GET });
+    },
     allMember() {
-        const token = localStorage.getItem('token');
-        let config = {
-            headers: { Authorization: 'Bearer ' + token }
-        }
-        return axios.get(URL + MEMBER_ALL, config);
-    }
-
+        return Axios({ url: MEMBER_ALL, method: GET });
+    },
     getRoleList() {
-        const token = localStorage.getItem('token');
-        let config = {
-            headers: { Authorization: 'Bearer ' + token }
-        }
-        return axios.get(URL + MEMBER_PRV, config);
+        return Axios({ url: MEMBER_PRV, method: GET });
     }
 }
-
-export default new GetFunc();

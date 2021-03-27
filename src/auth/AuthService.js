@@ -1,41 +1,19 @@
-import axios from 'axios'
-import { withCookies, Cookies } from 'react-cookie';
 import jwt_decode from "jwt-decode";
 import { ADMIN } from "./AuthRole";
+import PostFunc from "../api/PostFunc";
 
 class AuthService {
     executeJwtAuthenticationService(username, password) {
-        return axios.post('http://localhost:8080/authenticate', {
-            username,
-            password
-        })
-    }
-
-    executeHelloService() {
-        return axios.get('http://localhost:8080/hello');
+        return PostFunc.login(username, password);
     }
 
     registerSuccessfulLoginForJwt(token) {
         localStorage.setItem('token', token);
-        this.setupAxiosInterceptors();
-    }
-
-    setupAxiosInterceptors() {
-        axios.interceptors.request.use(
-            config => {
-                const token = localStorage.getItem('token');
-                if (token) {
-                    config.headers['Authorization'] = 'Bearer ' + token;
-                }
-                return config;
-            },
-            error => {
-                Promise.reject(error)
-            });
     }
 
     logout() {
-        localStorage.removeItem("token");
+        let id = this.getLoggedInUserId();
+        return PostFunc.logout(id);
     }
 
     isLogin() {
@@ -72,6 +50,12 @@ class AuthService {
         let token = localStorage.getItem('token');
         var jwt = jwt_decode(token);
         return jwt.name;
+    }
+
+    getLoggedInUserId() {
+        let token = localStorage.getItem('token');
+        var jwt = jwt_decode(token);
+        return jwt.sub;
     }
 }
 

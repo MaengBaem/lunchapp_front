@@ -28,8 +28,12 @@ class UserConfig extends Component {
     };
 
     logout = () => {
-        AuthenticationService.logout();
-        this.props.history.push('/login');
+        AuthenticationService.logout().then(res => {
+            if (res.status === 200) {
+                localStorage.removeItem("token");
+                this.props.history.push('/login');
+            }
+        })
     }
     render() {
         return (

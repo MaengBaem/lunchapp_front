@@ -1,99 +1,54 @@
-import axios from "axios";
-import { COMPANY_CREATE, COMPANY_MODIFY, COMPANY_DELETE, PROJECT_CREATE, PROJECT_MODIFY, PROJECT_DELETE, MEMBER_DELETE, MEMBER_CREATE, MEMBER_MODIFY } from "./PostUrl";
+import Axios from "./Axios";
+import {
+    LOGIN, LOGOUT,
+    COMPANY_CREATE, COMPANY_MODIFY, COMPANY_DELETE,
+    PROJECT_CREATE, PROJECT_MODIFY, PROJECT_DELETE,
+    MEMBER_DELETE, MEMBER_CREATE, MEMBER_MODIFY
+} from "./PostUrl";
 
-const URL = "http://localhost:8080";
 
-class PostFunc {
+const POST = "post";
+
+export default {
+    login(username, password) {
+        let data = { username, password };
+        return Axios({ url: LOGIN, method: POST, data: data });
+    },
+    logout(userId) {
+        let data = { userId }
+        return Axios({ url: LOGOUT, method: POST, data: data });
+    },
     createCompany(companyName) {
-        const token = localStorage.getItem('token');
-        let config = {
-            headers: { Authorization: 'Bearer ' + token }
-        }
-        return axios.post(URL + COMPANY_CREATE, {
-            companyName: companyName,
-        }, config)
-    }
-
+        let data = { companyName };
+        return Axios({ url: COMPANY_CREATE, method: POST, data: data });
+    },
     modifyCompany(id, companyName) {
-        const token = localStorage.getItem('token');
-        let config = {
-            headers: { Authorization: 'Bearer ' + token }
-        }
-        return axios.post(URL + COMPANY_MODIFY, {
-            id: id,
-            companyName: companyName,
-        }, config)
-    }
-
+        let data = { id, companyName }
+        return Axios({ url: COMPANY_MODIFY, method: POST, data: data });
+    },
     deleteCompany(id) {
-        const token = localStorage.getItem('token');
-        let config = {
-            headers: { Authorization: 'Bearer ' + token }
-        }
-        return axios.post(URL + COMPANY_DELETE, {
-            id: id,
-        }, config)
-    }
-
+        let data = { id }
+        return Axios({ url: COMPANY_DELETE, method: POST, data: data });
+    },
     createProject(info) {
-        const token = localStorage.getItem('token');
-        let config = {
-            headers: { Authorization: 'Bearer ' + token }
-        }
-        return axios.post(URL + PROJECT_CREATE,
-            info
-            , config)
-    }
-
+        return Axios({ url: PROJECT_CREATE, method: POST, data: info });
+    },
     modifyProject(info) {
-        const token = localStorage.getItem('token');
-        let config = {
-            headers: { Authorization: 'Bearer ' + token }
-        }
-        return axios.post(URL + PROJECT_MODIFY,
-            info
-            , config)
-    }
-
+        return Axios({ url: PROJECT_MODIFY, method: POST, data: info });
+    },
     deleteProject(id) {
-        const token = localStorage.getItem('token');
-        let config = {
-            headers: { Authorization: 'Bearer ' + token }
-        }
-        return axios.post(URL + PROJECT_DELETE, {
-            id: id,
-        }, config)
-    }
-
+        let data = { id }
+        return Axios({ url: PROJECT_DELETE, method: POST, data: data });
+    },
     createMember(info) {
-        const token = localStorage.getItem('token');
-        let config = {
-            headers: { Authorization: 'Bearer ' + token }
-        }
-        return axios.post(URL + MEMBER_CREATE,
-            info
-            , config)
-    }
+        return Axios({ url: MEMBER_CREATE, method: POST, data: info });
+    },
 
     modifyMember(info) {
-        const token = localStorage.getItem('token');
-        let config = {
-            headers: { Authorization: 'Bearer ' + token }
-        }
-        return axios.post(URL + MEMBER_MODIFY,
-            info
-            , config)
-    }
-
+        return Axios({ url: MEMBER_MODIFY, method: POST, data: info });
+    },
     deleteMember(id) {
-        const token = localStorage.getItem('token');
-        let config = {
-            headers: { Authorization: 'Bearer ' + token }
-        }
-        return axios.post(URL + MEMBER_DELETE, {
-            id: id,
-        }, config)
+        let data = { id }
+        return Axios({ url: MEMBER_DELETE, method: POST, data: data });
     }
 }
-
-export default new PostFunc();

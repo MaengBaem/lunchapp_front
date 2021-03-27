@@ -19,6 +19,7 @@ export default class MemberComponent extends Component {
             { field: 'userName', headerName: '이름', width: 200 },
             { field: 'email', headerName: '이메일', width: 200 },
             { field: 'role', headerName: '구분', width: 200 },
+            { field: 'createdDate', headerName: '생성일', width: 200 },
             {
                 field: 'modify',
                 headerName: '수정',

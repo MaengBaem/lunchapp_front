@@ -51,7 +51,7 @@ export default class CreateMember extends Component {
                     id="password"
                     label="Password"
                     type="password"
-                    placeholder="8자 이상"
+                    placeholder="4자 이상"
                     fullWidth
                     onChange={this.props.onHandleChange}
                     style={common}
