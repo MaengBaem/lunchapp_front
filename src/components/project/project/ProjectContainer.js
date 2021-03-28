@@ -33,12 +33,8 @@ export default class ProjectManagement extends Component {
 
     componentDidMount() {
         GetFunc.allProject().then(res => {
-            if (res.data.result) {
-                this.setState({ projectList: res.data.data })
-            } else {
-                alert(res.data.result);
-            }
-        })
+            this.setState({ projectList: res.data })
+        }).catch(err => alert(err.response.data))
     }
 
     onHandleChange(e) {
@@ -51,30 +47,23 @@ export default class ProjectManagement extends Component {
 
     createProject() {
         GetFunc.allProjectMaterial().then(res => {
-            if (res.data.result) {
-                let noneCompany = [{ id: "0", companyName: "" }];
-                let companys = [...noneCompany, ...res.data.data.companyList]
-                this.setState({
-                    companyList: companys, statusList: res.data.data.statusList, open: true, modalType: CREATE, modalTitle: CREATE_KR,
-                    info: { companyId: res.data.data.companyList[0].id, statusId: res.data.data.statusList[0].id }
-                })
-            } else {
-                alert(res.data.result);
-            }
-        })
+            let noneCompany = [{ id: "0", companyName: "" }];
+            let companys = [...noneCompany, ...res.data.data.companyList]
+            this.setState({
+                companyList: companys, statusList: res.data.statusList, open: true, modalType: CREATE, modalTitle: CREATE_KR,
+                info: { companyId: res.data.companyList[0].id, statusId: res.data.statusList[0].id }
+            })
+
+        }).catch(err => alert(err.response.data))
     }
 
     modifyProject(row) {
         GetFunc.allProjectMaterial().then(res => {
-            if (res.data.result) {
-                this.setState({
-                    companyList: res.data.data.companyList, statusList: res.data.data.statusList, open: true, modalType: MODIFY, modalTitle: MODIFY_KR,
-                    info: { id: row.id, companyId: row.companyId, desc: row.desc, endDate: row.endDate, startDate: row.startDate, status: row.status, statusId: row.statusId, title: row.title }
-                })
-            } else {
-                alert(res.data.result);
-            }
-        })
+            this.setState({
+                companyList: res.data.companyList, statusList: res.data.statusList, open: true, modalType: MODIFY, modalTitle: MODIFY_KR,
+                info: { id: row.id, companyId: row.companyId, desc: row.desc, endDate: row.endDate, startDate: row.startDate, status: row.status, statusId: row.statusId, title: row.title }
+            })
+        }).catch(err => alert(err.response.data))
     }
 
     deleteProject(id) { this.setState({ open: true, modalType: DELETE, modalTitle: DELETE_KR, select: id }) }
@@ -92,13 +81,13 @@ export default class ProjectManagement extends Component {
     }
 
     create() {
-        PostFunc.createProject(this.state.info).then(res => this.resultAction(res));
+        PostFunc.createProject(this.state.info).then(res => this.resultAction(res)).catch(err => alert(err.response.data))
     }
     modify() {
-        PostFunc.modifyProject(this.state.info).then(res => this.resultAction(res));
+        PostFunc.modifyProject(this.state.info).then(res => this.resultAction(res)).catch(err => alert(err.response.data))
     }
     delete() {
-        PostFunc.deleteProject(this.state.select).then(res => this.resultAction(res));
+        PostFunc.deleteProject(this.state.select).then(res => this.resultAction(res)).catch(err => alert(err.response.data))
     }
 
     renderModal() {
@@ -113,11 +102,7 @@ export default class ProjectManagement extends Component {
     }
 
     resultAction(res) {
-        if (res.data.result === SUCCESS) {
-            this.setState({ projectList: res.data.data, open: false, modalTitle: "", modalType: "", select: "" });
-        } else {
-            alert(res.data.result);
-        }
+        this.setState({ projectList: res.data, open: false, modalTitle: "", modalType: "", select: "" });
     }
 
     render() {

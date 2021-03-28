@@ -30,12 +30,8 @@ export default class CompanyMangement extends Component {
 
     componentDidMount() {
         GetFunc.allCompany().then(res => {
-            if (res.data.result) {
-                this.setState({ companyList: res.data.data })
-            } else {
-                alert(res.data.result);
-            }
-        })
+            this.setState({ companyList: res.data });
+        }).catch(err => alert(err.response.data))
     }
 
     onCompanyChange(e) {
@@ -58,12 +54,12 @@ export default class CompanyMangement extends Component {
     }
 
     create() {
-        PostFunc.createCompany(this.state.companyName).then(res => this.resultAction(res));
+        PostFunc.createCompany(this.state.companyName).then(res => this.resultAction(res)).catch(err => alert(err.response.data))
     }
 
     modify() {
         if (this.state.companyName !== "") {
-            PostFunc.modifyCompany(this.state.select, this.state.companyName).then(res => this.resultAction(res));
+            PostFunc.modifyCompany(this.state.select, this.state.companyName).then(res => this.resultAction(res)).catch(err => alert(err.response.data))
         }
         else {
             alert("빈 값 입니다!");
@@ -71,15 +67,11 @@ export default class CompanyMangement extends Component {
     }
 
     delete() {
-        PostFunc.deleteCompany(this.state.select).then(res => this.resultAction(res));
+        PostFunc.deleteCompany(this.state.select).then(res => this.resultAction(res)).catch(err => alert(err.response.data))
     }
 
     resultAction(res) {
-        if (res.data.result === SUCCESS) {
-            this.setState({ companyList: res.data.data, open: false, modalType: "", select: "" });
-        } else {
-            alert(res.data.result);
-        }
+        this.setState({ companyList: res.data, open: false, modalType: "", select: "" });
     }
 
     createCompany() { this.setState({ open: true, modalType: CREATE, modalTitle: CREATE_KR }) }

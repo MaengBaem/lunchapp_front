@@ -33,12 +33,8 @@ export default class MemberContainer extends Component {
 
     componentDidMount() {
         GetFunc.allMember().then(res => {
-            if (res.data.result) {
-                this.setState({ memberList: res.data.data })
-            } else {
-                alert(res.data.result);
-            }
-        })
+            this.setState({ memberList: res.data })
+        }).catch(err => alert(err.response.data))
     }
 
     onHandleChange(e) {
@@ -61,48 +57,37 @@ export default class MemberContainer extends Component {
     }
 
     create() {
-        PostFunc.createMember(this.state.info).then(res => this.resultAction(res));
+        PostFunc.createMember(this.state.info).then(res => this.resultAction(res)).catch(err => alert(err.response.data))
     }
     modify() {
-        PostFunc.modifyMember(this.state.info).then(res => this.resultAction(res));
+        PostFunc.modifyMember(this.state.info).then(res => this.resultAction(res)).catch(err => alert(err.response.data))
     }
     delete() {
-        PostFunc.deleteMember(this.state.select).then(res => this.resultAction(res));
+        PostFunc.deleteMember(this.state.select).then(res => this.resultAction(res)).catch(err => alert(err.response.data))
     }
 
     resultAction(res) {
-        if (res.data.result === SUCCESS) {
-            this.setState({ memberList: res.data.data, open: false, modalTitle: "", modalType: "", select: "" });
-        } else {
-            alert(res.data.result);
-        }
+        this.setState({ memberList: res.data, open: false, modalTitle: "", modalType: "", select: "" });
     }
 
     createMember() {
         GetFunc.getRoleList().then(res => {
-            if (res.data.result) {
-                this.setState({
-                    roleList: res.data.data, open: true, modalType: CREATE, modalTitle: CREATE_KR,
-                    info: { roleId: res.data.data[0].id }
-                })
-            } else {
-                alert(res.data.result);
-            }
-        })
+            this.setState({
+                roleList: res.data, open: true, modalType: CREATE, modalTitle: CREATE_KR,
+                info: { roleId: res.data[0].id }
+            })
+        }).catch(err => alert(err.response.data))
     }
 
     deleteMember(id) { this.setState({ open: true, modalType: DELETE, modalTitle: DELETE_KR, select: id }) }
     modifyMember(row) {
         GetFunc.getRoleList().then(res => {
-            if (res.data.result) {
-                this.setState({
-                    roleList: res.data.data, open: true, modalType: MODIFY, modalTitle: MODIFY_KR,
-                    info: { id: row.id, email: row.email, userName: row.userName, roleId: row.roleId }
-                })
-            } else {
-                alert(res.data.result);
-            }
-        })
+            this.setState({
+                roleList: res.data, open: true, modalType: MODIFY, modalTitle: MODIFY_KR,
+                info: { id: row.id, email: row.email, userName: row.userName, roleId: row.roleId }
+            })
+
+        }).catch(err => alert(err.response.data))
     }
 
     renderModal() {
