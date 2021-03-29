@@ -7,7 +7,8 @@ import AdminSide from './AdminSide.js';
 import UserSide from './UserSide.js';
 
 const Side = styled.div`
-    width:10%;
+    width: 200px;
+    min-width: 200px;
     padding-left: 10px;
     display: ${(props) => (props.isUserLoggedIn ? 'auto' : 'none')};
     `;
