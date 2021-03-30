@@ -29,18 +29,20 @@ export default class AdminSide extends Component {
                             <ListItemText primary="개발 일지" />
                         </ListItem>
                     </Link>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <EqualizerIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="차트 관리" />
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <TableChartIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="차트" />
-                    </ListItem>
+                    <Link style={LinkStyle} to="/chart-manage">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <EqualizerIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="차트 관리" />
+                        </ListItem>
+                        <ListItem button>
+                            <ListItemIcon>
+                                <TableChartIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="차트" />
+                        </ListItem>
+                    </Link>
                 </List>
                 <Divider />
                 <Link style={LinkStyle} to="/project-manage">
