@@ -7,26 +7,15 @@ import CompanyComponent from "./CompanyComponent";
 import { CREATE, MODIFY, DELETE, SUCCESS, MODIFY_KR, DELETE_KR, CREATE_KR } from "../../../common/Constants";
 
 export default class CompanyMangement extends Component {
-    constructor() {
-        super();
-        this.state = {
-            companyList: [],
-            open: false,
-            modalType: "",
-            modalTitle: "",
-            companyName: "",
-            select: "",
-        }
-        this.close = this.close.bind(this);
-        this.handleOk = this.handleOk.bind(this);
-        this.onCompanyChange = this.onCompanyChange.bind(this);
-        this.createCompany = this.createCompany.bind(this);
-        this.create = this.create.bind(this);
-        this.renderModal = this.renderModal.bind(this);
-        this.modifyCompany = this.modifyCompany.bind(this);
-        this.resultAction = this.resultAction.bind(this);
-        this.deleteCompany = this.deleteCompany.bind(this);
+    state = {
+        companyList: [],
+        open: false,
+        modalType: "",
+        modalTitle: "",
+        companyName: "",
+        select: "",
     }
+
 
     componentDidMount() {
         GetFunc.allCompany().then(res => {
@@ -34,15 +23,15 @@ export default class CompanyMangement extends Component {
         }).catch(err => alert(err.response.data))
     }
 
-    onCompanyChange(e) {
+    onCompanyChange = (e) => {
         this.setState({ companyName: e.target.value })
     }
 
-    close() {
+    close = () => {
         this.setState({ open: false, modalType: "", modalTitle: "" })
     }
 
-    handleOk() {
+    handleOk = () => {
         let type = this.state.modalType;
         if (type === CREATE) {
             this.create();
@@ -53,11 +42,11 @@ export default class CompanyMangement extends Component {
         }
     }
 
-    create() {
+    create = () => {
         PostFunc.createCompany(this.state.companyName).then(res => this.resultAction(res)).catch(err => alert(err.response.data))
     }
 
-    modify() {
+    modify = () => {
         if (this.state.companyName !== "") {
             PostFunc.modifyCompany(this.state.select, this.state.companyName).then(res => this.resultAction(res)).catch(err => alert(err.response.data))
         }
@@ -66,7 +55,7 @@ export default class CompanyMangement extends Component {
         }
     }
 
-    delete() {
+    delete = () => {
         PostFunc.deleteCompany(this.state.select).then(res => this.resultAction(res)).catch(err => alert(err.response.data))
     }
 
@@ -74,11 +63,11 @@ export default class CompanyMangement extends Component {
         this.setState({ companyList: res.data, open: false, modalType: "", select: "" });
     }
 
-    createCompany() { this.setState({ open: true, modalType: CREATE, modalTitle: CREATE_KR }) }
-    modifyCompany(row) { this.setState({ open: true, modalType: MODIFY, modalTitle: MODIFY_KR, select: row.id, companyName: row.companyName }) }
-    deleteCompany(id) { this.setState({ open: true, modalType: DELETE, modalTitle: DELETE_KR, select: id }) }
+    createCompany = () => { this.setState({ open: true, modalType: CREATE, modalTitle: CREATE_KR }) }
+    modifyCompany = (row) => { this.setState({ open: true, modalType: MODIFY, modalTitle: MODIFY_KR, select: row.id, companyName: row.companyName }) }
+    deleteCompany = (id) => { this.setState({ open: true, modalType: DELETE, modalTitle: DELETE_KR, select: id }) }
 
-    renderModal() {
+    renderModal = () => {
         let type = this.state.modalType;
         if (type === CREATE) {
             return <CreateCompany onCompanyChange={this.onCompanyChange} />

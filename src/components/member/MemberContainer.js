@@ -7,28 +7,14 @@ import PostFunc from '../../api/PostFunc';
 import CreateMember from './modal/CreateMember';
 
 export default class MemberContainer extends Component {
-    constructor() {
-        super();
-        this.state = {
-            memberList: [],
-            open: false,
-            modalTitle: "",
-            modalType: "",
-            select: "",
-            info: { id: "", email: "", userName: "", password: null, role: "", roleId: null },
-            roleList: [],
-        }
-
-        this.close = this.close.bind(this);
-        this.handleOk = this.handleOk.bind(this);
-        this.renderModal = this.renderModal.bind(this);
-        this.createMember = this.createMember.bind(this);
-        this.deleteMember = this.deleteMember.bind(this);
-        this.modifyMember = this.modifyMember.bind(this);
-        this.delete = this.delete.bind(this);
-        this.modify = this.modify.bind(this);
-        this.create = this.create.bind(this);
-        this.onHandleChange = this.onHandleChange.bind(this);
+    state = {
+        memberList: [],
+        open: false,
+        modalTitle: "",
+        modalType: "",
+        select: "",
+        info: { id: "", email: "", userName: "", password: null, role: "", roleId: null },
+        roleList: [],
     }
 
     componentDidMount() {
@@ -37,15 +23,15 @@ export default class MemberContainer extends Component {
         }).catch(err => alert(err.response.data))
     }
 
-    onHandleChange(e) {
+    onHandleChange = (e) => {
         this.setState({ info: { ...this.state.info, [e.target.id]: e.target.value } })
     }
 
-    close() {
+    close = () => {
         this.setState({ open: false });
     }
 
-    handleOk() {
+    handleOk = () => {
         let type = this.state.modalType;
         if (type === CREATE) {
             this.create();
@@ -56,21 +42,21 @@ export default class MemberContainer extends Component {
         }
     }
 
-    create() {
+    create = () => {
         PostFunc.createMember(this.state.info).then(res => this.resultAction(res)).catch(err => alert(err.response.data))
     }
-    modify() {
+    modify = () => {
         PostFunc.modifyMember(this.state.info).then(res => this.resultAction(res)).catch(err => alert(err.response.data))
     }
-    delete() {
+    delete = () => {
         PostFunc.deleteMember(this.state.select).then(res => this.resultAction(res)).catch(err => alert(err.response.data))
     }
 
-    resultAction(res) {
+    resultAction = (res) => {
         this.setState({ memberList: res.data, open: false, modalTitle: "", modalType: "", select: "" });
     }
 
-    createMember() {
+    createMember = () => {
         GetFunc.getRoleList().then(res => {
             this.setState({
                 roleList: res.data, open: true, modalType: CREATE, modalTitle: CREATE_KR,
@@ -79,8 +65,8 @@ export default class MemberContainer extends Component {
         }).catch(err => alert(err.response.data))
     }
 
-    deleteMember(id) { this.setState({ open: true, modalType: DELETE, modalTitle: DELETE_KR, select: id }) }
-    modifyMember(row) {
+    deleteMember = (id) => { this.setState({ open: true, modalType: DELETE, modalTitle: DELETE_KR, select: id }) }
+    modifyMember = (row) => {
         GetFunc.getRoleList().then(res => {
             this.setState({
                 roleList: res.data, open: true, modalType: MODIFY, modalTitle: MODIFY_KR,
@@ -90,7 +76,7 @@ export default class MemberContainer extends Component {
         }).catch(err => alert(err.response.data))
     }
 
-    renderModal() {
+    renderModal = () => {
         let type = this.state.modalType;
         if (type === CREATE) {
             return <CreateMember roleList={this.state.roleList} onHandleChange={this.onHandleChange} />

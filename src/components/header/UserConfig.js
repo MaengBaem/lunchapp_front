@@ -9,14 +9,8 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AuthenticationService from '../../auth/AuthService.js'
 
 class UserConfig extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            anchorEl: null,
-        }
-        this.handleClick = this.handleClick.bind(this)
-        this.handleClose = this.handleClose.bind(this)
-        this.logout = this.logout.bind(this)
+    state = {
+        anchorEl: null,
     }
 
     handleClick = (event) => {

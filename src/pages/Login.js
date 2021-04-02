@@ -35,18 +35,13 @@ const InputSize = { width: '460px', height: '56px' }
 const ButtonStyle = { width: '460px', height: '56px', marginBttom: '14px', marginTop: '12px', fontSize: '16px', fontWeight: '700' }
 
 class Login extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            username: '',
-            password: '',
-            token: localStorage.getItem("token") || '',
-        }
-        this.handleChange = this.handleChange.bind(this)
-        this.loginClicked = this.loginClicked.bind(this)
-    }
+    state = {
+        username: '',
+        password: '',
+        token: localStorage.getItem("token") || '',
+    };
 
-    handleChange(event) {
+    handleChange = (event) => {
         this.setState(
             {
                 [event.target.name]
@@ -55,7 +50,7 @@ class Login extends Component {
         )
     }
 
-    loginClicked(e) {
+    loginClicked = (e) => {
         e.preventDefault();
         AuthenticationService
             .executeJwtAuthenticationService(this.state.username, this.state.password)

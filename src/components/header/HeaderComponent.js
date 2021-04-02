@@ -35,13 +35,8 @@ const loginStyle = {
 }
 
 class HeaderComponent extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            anchorEl: null,
-        }
-        this.handleClick = this.handleClick.bind(this)
-        this.handleClose = this.handleClose.bind(this)
+    state = {
+        anchorEl: null,
     }
 
     handleClick = (event) => {

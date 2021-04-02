@@ -7,28 +7,15 @@ import CreateProject from '../modal/CreateProject';
 import PostFunc from '../../../api/PostFunc';
 
 export default class ProjectManagement extends Component {
-    constructor() {
-        super();
-        this.state = {
-            open: false,
-            modalType: "",
-            modalTitle: "",
-            select: "",
-            info: { id: "", title: "", desc: "", companyId: null, status: "", statusId: null, startDate: null, endDate: null },
-            companyList: [],
-            projectList: [],
-            statusList: [],
-        }
-        this.close = this.close.bind(this);
-        this.handleOk = this.handleOk.bind(this);
-        this.onHandleChange = this.onHandleChange.bind(this);
-        this.createProject = this.createProject.bind(this);
-        this.deleteProject = this.deleteProject.bind(this);
-        this.delete = this.delete.bind(this);
-        this.create = this.create.bind(this);
-        this.modify = this.modify.bind(this);
-        this.modifyProject = this.modifyProject.bind(this);
-        this.resultAction = this.resultAction.bind(this);
+    state = {
+        open: false,
+        modalType: "",
+        modalTitle: "",
+        select: "",
+        info: { id: "", title: "", desc: "", companyId: null, status: "", statusId: null, startDate: null, endDate: null },
+        companyList: [],
+        projectList: [],
+        statusList: [],
     }
 
     componentDidMount() {
@@ -37,15 +24,15 @@ export default class ProjectManagement extends Component {
         }).catch(err => alert(err.response.data))
     }
 
-    onHandleChange(e) {
+    onHandleChange = (e) => {
         this.setState({ info: { ...this.state.info, [e.target.id]: e.target.value } })
     }
 
-    close() {
+    close = () => {
         this.setState({ open: false, modalType: "", modalTitle: "", companyList: [], statusList: [] })
     }
 
-    createProject() {
+    createProject = () => {
         GetFunc.allProjectMaterial().then(res => {
             let noneCompany = [{ id: "0", companyName: "" }];
             let companys = [...noneCompany, ...res.data.data.companyList]
@@ -57,7 +44,7 @@ export default class ProjectManagement extends Component {
         }).catch(err => alert(err.response.data))
     }
 
-    modifyProject(row) {
+    modifyProject = (row) => {
         GetFunc.allProjectMaterial().then(res => {
             this.setState({
                 companyList: res.data.companyList, statusList: res.data.statusList, open: true, modalType: MODIFY, modalTitle: MODIFY_KR,
@@ -66,10 +53,10 @@ export default class ProjectManagement extends Component {
         }).catch(err => alert(err.response.data))
     }
 
-    deleteProject(id) { this.setState({ open: true, modalType: DELETE, modalTitle: DELETE_KR, select: id }) }
+    deleteProject = (id) => { this.setState({ open: true, modalType: DELETE, modalTitle: DELETE_KR, select: id }) }
 
 
-    handleOk() {
+    handleOk = () => {
         let type = this.state.modalType;
         if (type === CREATE) {
             this.create();
@@ -80,17 +67,17 @@ export default class ProjectManagement extends Component {
         }
     }
 
-    create() {
+    create = () => {
         PostFunc.createProject(this.state.info).then(res => this.resultAction(res)).catch(err => alert(err.response.data))
     }
-    modify() {
+    modify = () => {
         PostFunc.modifyProject(this.state.info).then(res => this.resultAction(res)).catch(err => alert(err.response.data))
     }
-    delete() {
+    delete = () => {
         PostFunc.deleteProject(this.state.select).then(res => this.resultAction(res)).catch(err => alert(err.response.data))
     }
 
-    renderModal() {
+    renderModal = () => {
         let type = this.state.modalType;
         if (type === CREATE) {
             return <CreateProject onHandleChange={this.onHandleChange} companyList={this.state.companyList} statusList={this.state.statusList} />
@@ -101,7 +88,7 @@ export default class ProjectManagement extends Component {
         }
     }
 
-    resultAction(res) {
+    resultAction = (res) => {
         this.setState({ projectList: res.data, open: false, modalTitle: "", modalType: "", select: "" });
     }
 
